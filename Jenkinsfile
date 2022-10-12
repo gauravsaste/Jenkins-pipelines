@@ -1,5 +1,10 @@
 pipeline {
          agent any
+         environment {
+              CREDS_ID = 'My Project 70142'
+              BUCKET = 'jenkins-logs-bucket'
+              PATTERN = 'test-build-logs.txt'
+         }   
          stages { 
                  stage('One') { 
                  steps {
@@ -17,4 +22,9 @@ pipeline {
                  }
                  }
 }
+        post {
+           always {
+               step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
+           }
+        }
 }
