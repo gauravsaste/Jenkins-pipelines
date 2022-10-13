@@ -35,9 +35,9 @@ pipeline {
         post {
            always {
              script {
-               //sh 'touch joblognew1.txt'
-               //sh 'echo testing >> joblognew1.txt'
-               googleStorageBuildLogUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, logName: "testlogs.txt", setForFailedJobs: true
+               sh 'touch joblognew1.txt'
+               sh 'echo testing >> joblognew1.txt'
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'joblognew1.txt'
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
