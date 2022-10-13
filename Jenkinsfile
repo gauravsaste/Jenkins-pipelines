@@ -33,7 +33,8 @@ pipeline {
 }
         post {
            always {
-               step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
+               echo 'uploading logs'
+               #step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
            }
         }
 }
