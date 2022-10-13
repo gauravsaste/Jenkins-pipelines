@@ -19,7 +19,7 @@ pipeline {
                  } 
                  steps {
                          echo "some build data"
-                         sh 'sleep 50' 
+                         //sh 'sleep 50'
                          sh 'exit 1'
                  }
                  }
