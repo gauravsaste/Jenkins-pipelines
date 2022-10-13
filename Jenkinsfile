@@ -3,7 +3,7 @@ pipeline {
          environment {
               CREDS_ID = 'My Project 70142'
               BUCKET = 'jenkins-logs-bucket'
-              PATTERN = 'test-build-logs.txt'
+              PATTERN = 'build-logs-test-2.txt'
          }   
          stages { 
                  stage('One') { 
@@ -35,9 +35,9 @@ pipeline {
         post {
            always {
              script {
-               sh 'touch joblognew.txt'
-               sh 'echo testing >> joblognew.txt'
-               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'joblognew.txt'
+               //sh 'touch joblognew1.txt'
+               //sh 'echo testing >> joblognew1.txt'
+               googleStorageBuildLogUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, logName: 'env.PATTERN'
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
