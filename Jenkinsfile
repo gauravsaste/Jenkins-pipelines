@@ -21,20 +21,20 @@ pipeline {
                          echo "some build data" 
                  }
                  }
-                 stage('Upload logs to GCS'){
-                 steps{
-                    script{
-                         writeFile(file: 'joblog.txt', text: currentBuild.rawBuild.getLog())
-                         }
-                    step([$class: 'ClassicUploadStep', credentialsID: env.CREDS_ID, bucket: "gs://${env.BUCKET}", pattern: 'joblog.txt'])
-                    }
-                    }
+                 //stage('Upload logs to GCS'){
+                 //steps{
+                    //script{
+                         //writeFile(file: 'joblog.txt', text: currentBuild.rawBuild.getLog())
+                         //}
+                    //step([$class: 'ClassicUploadStep', credentialsID: env.CREDS_ID, bucket: "gs://${env.BUCKET}", pattern: 'joblog.txt'])
+                    //}
+                   // }
                     
 }
         post {
            always {
                echo 'uploading logs'
-               //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
+               step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
            }
         }
 }
