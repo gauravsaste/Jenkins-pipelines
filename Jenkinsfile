@@ -35,8 +35,9 @@ pipeline {
         post {
            always {
              script {
-               sh 'touch joblog.txt'
-               googleStorageUpload bucket: 'gs://jenkins-logs-bucket', credentialsId: 'My Project 70142', pattern: 'joblog.txt'
+               sh 'touch joblognew.txt'
+               sh 'echo testing >> joblognew.txt'
+               googleStorageUpload bucket: gs://${env.BUCKET}, credentialsId: env.CREDS_ID, pattern: 'joblognew.txt'
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
