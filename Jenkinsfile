@@ -37,7 +37,7 @@ pipeline {
              script {
                sh 'touch joblognew.txt'
                sh 'echo testing >> joblognew.txt'
-               googleStorageUpload bucket: 'gs://${env.BUCKET}', credentialsId: env.CREDS_ID, pattern: 'joblognew.txt'
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'joblognew.txt'
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
