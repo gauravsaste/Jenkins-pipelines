@@ -18,8 +18,8 @@ pipeline {
                        } 
                  } 
                  steps {
-                         //echo "some build data" 
-                         sh 'exit 1'
+                         echo "some build data" 
+                         //sh 'exit 1'
                  }
                  }
                  //stage('Upload logs to GCS'){
