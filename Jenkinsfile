@@ -34,8 +34,12 @@ pipeline {
 }
         post {
            always {
-               echo 'uploading logs'
-               step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
+             script {
+               sh 'touch joblog.txt'
+               googleStorageUpload bucket: 'gs://${env.BUCKET}', credentialsId: env.CREDS_ID, pattern: 'joblog.txt'
+               //echo 'uploading logs'
+               //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
+             }
            }
         }
 }
