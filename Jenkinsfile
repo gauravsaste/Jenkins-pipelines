@@ -31,14 +31,14 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               File logFile = new File("${env.WORKSPACE}/output6.log")
+               File logFile = new File("${env.WORKSPACE}/output7.txt")
                logFile.append(logContent.toString())
                //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
-               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'output6.log'
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'output7.txt'
            }
         }
 }
