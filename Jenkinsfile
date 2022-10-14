@@ -41,7 +41,7 @@ pipeline {
                //def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               println(logContent.toString())
+               //println(logContent.toString())
                File logFile = new File("output.log")
                logFile.append(logContent.toString())
                println(logFile.text)
