@@ -3,7 +3,7 @@ pipeline {
          environment {
               CREDS_ID = 'My Project 70142'
               BUCKET = 'jenkins-logs-bucket'
-              PATTERN = '${envBUILD_NUMBER}.txt'
+              PATTERN = '${env.BUILD_NUMBER}.txt'
          }   
          stages { 
                  stage('One') { 
@@ -20,7 +20,9 @@ pipeline {
                  steps {
                          echo "some build data"
                          sh 'ls'
-                         sh 'exit 1'
+                         println(env.PATTERN)
+                         //sh 'exit 1'
+                         
                  }
                  }
 }
