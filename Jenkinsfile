@@ -44,11 +44,11 @@ pipeline {
                //println(logContent.toString())
                File logFile = new File("output2.log")
                logFile.append(logContent.toString())
-               println(logFile.text)
+               //println(logFile.text)
                //sh 'cat output.log'
-               writeFile(file: "joblog.txt", text: println(logContent.toString()))
+               //writeFile(file: "joblog.txt", text: println(logContent.toString()))
                //sh 'sleep 50'
-               //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "logFile.text"
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${env.WORKSPACE}/output2.log"
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
