@@ -3,7 +3,7 @@ pipeline {
          environment {
               CREDS_ID = 'My Project 70142'
               BUCKET = 'jenkins-logs-bucket'
-              PATTERN = 'currentBuild.number'
+              PATTERN = '${currentBuild.number}'
          }   
          stages { 
                  stage('One') { 
