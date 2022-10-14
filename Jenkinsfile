@@ -33,7 +33,7 @@ pipeline {
                //currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                //File logFile = new File("${env.WORKSPACE}/output2.log")
                //logFile.append(logContent.toString())
-               writeFile(file: "joblog.txt", text: joblognew1.txt)
+               writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
