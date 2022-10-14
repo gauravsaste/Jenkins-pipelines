@@ -44,6 +44,7 @@ pipeline {
                println(logContent.toString())
                def logFile = new File("output.log")
                logFile.append(logContent.toString())
+               println(logFile)
                //writeFile(file: "joblog.txt", text: logFile)
                //sh 'sleep 50'
                googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "logFile.text"
