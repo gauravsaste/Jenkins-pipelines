@@ -20,7 +20,7 @@ pipeline {
                  steps {
                          echo "some build data"
                          //sh 'ls'
-                         //sh 'exit 1'
+                         sh 'exit 1'
                  }
                  }
 }
