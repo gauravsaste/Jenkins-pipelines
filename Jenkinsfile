@@ -42,13 +42,13 @@ pipeline {
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                //println(logContent.toString())
-               File logFile = new File("output1.log")
+               File logFile = new File("output2.log")
                logFile.append(logContent.toString())
                println(logFile.text)
                //sh 'cat output.log'
                //writeFile(file: "joblog.txt", text: logFile)
                //sh 'sleep 50'
-               //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "logFile.text"
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "logFile.text"
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
