@@ -42,9 +42,9 @@ pipeline {
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                println(logContent.toString())
-               def logFile = new File("output.log")
+               File logFile = new File("output.log")
                logFile.append(logContent.toString())
-               println(logFile)
+               println(logFile.text)
                //sh 'cat output.log'
                //writeFile(file: "joblog.txt", text: logFile)
                //sh 'sleep 50'
