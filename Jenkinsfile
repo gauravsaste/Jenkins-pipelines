@@ -44,7 +44,7 @@ pipeline {
                println(logContent.toString())
                def logFile = new File("output.log")
                logFile.append(logContent.toString())
-               println("output.log")
+               println(output.log)
                //sh 'cat output.log'
                //writeFile(file: "joblog.txt", text: logFile)
                //sh 'sleep 50'
