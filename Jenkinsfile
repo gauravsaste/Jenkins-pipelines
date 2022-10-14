@@ -27,18 +27,18 @@ pipeline {
         post {
            always {
              script {
-               sh 'touch joblognew1.txt'
-               sh 'echo testing >> joblognew1.txt'
-               //def logContent = new ByteArrayOutputStream()
-               //currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               //File logFile = new File("${env.WORKSPACE}/output2.log")
-               //logFile.append(logContent.toString())
-               writeFile(file: "joblog.txt", text: "joblognew1.txt")
+               //sh 'touch joblognew1.txt'
+               //sh 'echo testing >> joblognew1.txt'
+               def logContent = new ByteArrayOutputStream()
+               currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
+               File logFile = new File("${env.WORKSPACE}/output5.txt")
+               logFile.append(logContent.toString())
+               //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
-               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'joblognew1.txt'
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'output5.txt'
            }
         }
 }
