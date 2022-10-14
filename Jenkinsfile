@@ -42,7 +42,7 @@ pipeline {
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                //println(logContent.toString())
-               File logFile = new File("$env.WORKSPACE}/output2.log")
+               File logFile = new File("${env.WORKSPACE}/output2.log")
                logFile.append(logContent.toString())
                //println(logFile.text)
                //sh 'cat output.log'
