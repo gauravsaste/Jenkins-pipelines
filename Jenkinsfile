@@ -45,6 +45,8 @@ pipeline {
                File logFile = new File("output2.log")
                logFile.append(logContent.toString())
                println(logFile.text)
+               sh 'ls'
+               sh 'pwd'
                //sh 'cat output.log'
                //writeFile(file: "joblog.txt", text: logFile)
                //sh 'sleep 50'
