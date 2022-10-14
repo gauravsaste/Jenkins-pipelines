@@ -3,7 +3,7 @@ pipeline {
          environment {
               CREDS_ID = 'My Project 70142'
               BUCKET = 'jenkins-logs-bucket'
-              PATTERN = '${currentBuild.number}'
+              PATTERN = "${currentBuild.number}"
          }   
          stages { 
                  stage('One') { 
@@ -38,7 +38,7 @@ pipeline {
                //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
                echo " build number is ${currentBuild.number}"
-               //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: ${env.BUILD_NUMBER}
+               //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.BUILD_NUMBER])
              }
                //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: env.
