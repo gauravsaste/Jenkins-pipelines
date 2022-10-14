@@ -33,7 +33,7 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               File logFile = new File("${env.WORKSPACE}/${currentBuild.number}.txt")
+               File logFile = new File("${env.WORKSPACE}/\"${currentBuild.number}\".txt")
                logFile.append(logContent.toString())
                //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
