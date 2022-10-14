@@ -33,7 +33,7 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               File logFile = new File("${env.WORKSPACE}/${env.PATTERN}.txt")
+               File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
                logFile.append(logContent.toString())
                //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
@@ -41,7 +41,7 @@ pipeline {
                //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.BUILD_NUMBER])
              }
-               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: 'env.PATTERN'
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "env.PATTERN"
            }
         }
 }
