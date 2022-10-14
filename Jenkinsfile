@@ -40,7 +40,7 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                //def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
                def logContent = new ByteArrayOutputStream()
-               CurrentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
+               currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                writeFile(file: "joblog.txt", text: logContent)
                //sh 'sleep 50'
                googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "joblog.txt"
