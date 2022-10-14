@@ -3,7 +3,7 @@ pipeline {
          environment {
               CREDS_ID = 'My Project 70142'
               BUCKET = 'jenkins-logs-bucket'
-              PATTERN = "${currentBuild.number}"
+              PATTERN = "${currentBuild.number}.txt"
          }   
          stages { 
                  stage('One') { 
@@ -33,7 +33,7 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               File logFile = new File("${env.WORKSPACE}/\"${currentBuild.number}\".txt")
+               File logFile = new File("${env.WORKSPACE}/${env.PATTERN}.txt")
                logFile.append(logContent.toString())
                //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
@@ -41,7 +41,7 @@ pipeline {
                //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.BUILD_NUMBER])
              }
-               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: '"${currentBuild.number}".txt'
+               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${currentBuild.number}".txt'
            }
         }
 }
