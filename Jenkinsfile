@@ -37,7 +37,7 @@ pipeline {
                logFile.append(logContent.toString())
                //writeFile(file: "joblog.txt", text: "joblognew1.txt")
                //sh 'sleep 50'          
-               echo '${env.BUILD_NUMBER}
+               echo '${env.BUILD_NUMBER}'
                googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: ${env.BUILD_NUMBER}
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.BUILD_NUMBER])
              }
