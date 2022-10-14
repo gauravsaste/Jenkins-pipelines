@@ -39,11 +39,12 @@ pipeline {
                //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
                //def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
-               //def logContent = new ByteArrayOutputStream()
-               def logs = currentBuild.rawBuild.getLogText().writePlainText
-               writeFile(file: "joblog.txt", text: logs)
+               def logContent = new ByteArrayOutputStream()
+               currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
+               println(logContent.toString())
+               //writeFile(file: "joblog.txt", text: logs)
                //sh 'sleep 50'
-               googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "joblog.txt"
+               //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "joblog.txt"
                //echo 'uploading logs'
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.PATTERN])
              }
