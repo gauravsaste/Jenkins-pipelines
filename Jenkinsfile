@@ -31,7 +31,7 @@ pipeline {
              script {
                //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
-               buildUrl= "$BUILD_URL.split()"
+               buildUrl= "$BUILD_URL.replaceAll("\\s","-")"
                println(buildUrl)
                jobPath = buildUrl.split(":8080")[1]
                println(jobPath)
