@@ -31,8 +31,9 @@ pipeline {
              script {
                //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
-               buildUrl= "$BUILD_URL".toLowerCase().replaceAll('%20',' ')
-               
+               buildUrl= "$BUILD_URL".toLowerCase().trim() //replaceAll('%20',' ')
+               //buildUrl = "https://myjenkins:8080/Jobs/90"
+                 //if 
                println(buildUrl)
                jobPath = buildUrl.split(":8080/")[1]
                println(jobPath)
@@ -40,11 +41,6 @@ pipeline {
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
                logFile.append(logContent.toString())
-               //writeFile(file: "joblog.txt", text: "joblognew1.txt")
-               //sh 'sleep 50'          
-               //echo " build number is ${currentBuild.number}"
-               //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
-               //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.BUILD_NUMBER])
              }
                googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
            }
