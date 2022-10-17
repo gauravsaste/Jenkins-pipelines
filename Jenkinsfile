@@ -20,7 +20,6 @@ pipeline {
                  steps {
                          echo "some build data"
                          sh 'ls'
-                         string[] str
                          str = ${env.PATTERN}.split('.')[1]
                          println(env.PATTERN)
                          println(str)
