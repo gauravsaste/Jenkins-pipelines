@@ -33,7 +33,7 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                buildUrl= "$BUILD_URL"
                println(buildUrl)
-               jobPath = buildUrl.split("\:8080")[1]
+               jobPath = buildUrl.split(":8080")[1]
                println(jobPath)
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
