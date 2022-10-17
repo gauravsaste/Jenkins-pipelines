@@ -20,9 +20,7 @@ pipeline {
                  steps {
                          echo "some build data"
                          sh 'ls'
-                         str = ${env.PATTERN}.split("\\.")[1]
                          println(env.PATTERN)
-                         println(str)
                          //sh 'exit 1'
                          
                  }
@@ -33,6 +31,9 @@ pipeline {
              script {
                //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
+               a = "my-string"
+               str = a.split("-")[1]
+               println(str)
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
