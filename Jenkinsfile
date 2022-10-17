@@ -5,7 +5,7 @@ pipeline {
               BUCKET = 'jenkins-logs-bucket'
               PATTERN = "${currentBuild.number}.txt"
               //JENKINS_BUILD_URL = "${BUILD_URL}"
-              //JENKINS_BUILD_URL = "https://tempjenkins:8080/Test job/gs/45".toLowerCase()
+              JENKINS_BUILD_URL = "https://tempjenkins:8080/Test%20job/gs/45"
          }   
          stages { 
                  stage('One') { 
@@ -35,11 +35,11 @@ pipeline {
                //sh 'echo testing >> joblognew1.txt'
                //buildUrl= "$BUILD_URL".toLowerCase().replaceAll('%20',' ')
                buildUrl = "https://myjenkins:8080/Jobs/90"
-                 if ("${BUILD_URL}".contains('%20')){
-                     buildUrl = "${BUILD_URL}".replaceAll('%20',' ')
+                 if ("${JENKINS_BUILD_URL}".contains('%20')){
+                     buildUrl = "${JENKINS_BUILD_URL}".replaceAll('%20',' ')
                      }
                  else{
-                     buildUrl = "${BUILD_URL}"
+                     buildUrl = "${JENKINS_BUILD_URL}"
                      }
                println(buildUrl)
                jobPath = buildUrl.split(":8080/")[1]
