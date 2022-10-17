@@ -21,9 +21,9 @@ pipeline {
                  } 
                  steps {
                          echo "some build data"
-                         sh 'ls'
+                         //sh 'ls'
                          println(env.PATTERN)
-                         //sh 'exit 1'
+                         sh 'exit 1'
                          
                  }
                  }
