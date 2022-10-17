@@ -46,7 +46,7 @@ pipeline {
                //googleStorageUpload bucket: "gs://${env.BUCKET}", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
                //step([$class: 'StdoutUploadStep', credentialsId: env.CREDS_ID, bucket: "gs://${env.BUCKET}", logName: env.BUILD_NUMBER])
              }
-               googleStorageUpload bucket: "gs://${env.BUCKET}/jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
+               googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
            }
         }
 }
