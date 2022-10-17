@@ -2,7 +2,7 @@ pipeline {
          agent any
          environment {
               CREDS_ID = 'My Project 70142'
-              BUCKET = 'Jenkins-logs-bucket'
+              BUCKET = 'jenkins-logs-bucket'
               PATTERN = "${currentBuild.number}.txt"
          }   
          stages { 
