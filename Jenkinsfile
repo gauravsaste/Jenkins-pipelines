@@ -31,9 +31,14 @@ pipeline {
              script {
                //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
-               buildUrl= "$BUILD_URL".toLowerCase().trim() //replaceAll('%20',' ')
-               //buildUrl = "https://myjenkins:8080/Jobs/90"
-                 //if 
+               //buildUrl= "$BUILD_URL".toLowerCase().replaceAll('%20',' ')
+               buildUrl = "https://myjenkins:8080/Jobs/90"
+                 if ($buildUrl.contains('%20')){
+                     buildUrl = $buildUrl.toLowerCase().replaceAll('%20',' ')
+                     }
+                 else{
+                     buildUrl = $buildUrl.toLowerCase()
+                     }
                println(buildUrl)
                jobPath = buildUrl.split(":8080/")[1]
                println(jobPath)
