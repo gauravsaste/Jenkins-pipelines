@@ -4,7 +4,8 @@ pipeline {
               CREDS_ID = 'My Project 70142'
               BUCKET = 'jenkins-logs-bucket'
               PATTERN = "${currentBuild.number}.txt"
-              JENKINS_BUILD_URL = "${BUILD_URL}".toLowerCase()
+              //JENKINS_BUILD_URL = "${BUILD_URL}".toLowerCase()
+              JENKINS_BUILD_URL = "https://tempjenkins/Test job/gs/45"
          }   
          stages { 
                  stage('One') { 
