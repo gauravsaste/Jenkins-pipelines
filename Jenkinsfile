@@ -31,9 +31,10 @@ pipeline {
              script {
                //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
-               a = "my-string"
-               str = a.split("-")[1]
-               println(str)
+               buildUrl= "$BUILD_URL"
+               println(buildUrl)
+               jobPath = buildUrl.split("\:8080")[1]
+               println(jobPath)
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
