@@ -5,7 +5,7 @@ pipeline {
               BUCKET = 'jenkins-logs-bucket'
               PATTERN = "${currentBuild.number}.txt"
               //JENKINS_BUILD_URL = "${BUILD_URL}".toLowerCase()
-              JENKINS_BUILD_URL = "https://tempjenkins:8080/Test job/gs/45"
+              JENKINS_BUILD_URL = "https://tempjenkins:8080/Test job/gs/45".toLowerCase()
          }   
          stages { 
                  stage('One') { 
