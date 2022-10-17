@@ -20,7 +20,7 @@ pipeline {
                  steps {
                          echo "some build data"
                          sh 'ls'
-                         str = ${env.PATTERN}.split('.')[1]
+                         str = ${env.PATTERN}.split("\\.")[1]
                          println(env.PATTERN)
                          println(str)
                          //sh 'exit 1'
