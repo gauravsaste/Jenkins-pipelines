@@ -46,8 +46,10 @@ pipeline {
                println(jobPath)
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
-               logFile.append(logContent.toString())
+               channel = build.workspace.channel;
+               fp = new FilePath(channel, build.workspace.toString() + "/testing.txt")
+               //File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
+               fp.append(logContent.toString())
              }
                echo "Uploading job logs ${env.PATTERN} to storage bucket path: ${env.BUCKET}/$jobPath"
                googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
