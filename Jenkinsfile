@@ -31,7 +31,7 @@ pipeline {
         post {
            always {
              script {
-               sh 'touch ${env.PATTERN'
+               sh 'touch ${env.PATTERN}'
                //sh 'echo testing >> joblognew1.txt'
                
                  if ("${BUILD_URL}".contains('%20')){
