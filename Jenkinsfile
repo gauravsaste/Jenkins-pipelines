@@ -31,7 +31,7 @@ pipeline {
         post {
            always {
              script {
-               sh 'touch sample.txt'
+               //sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
                
                  if ("${BUILD_URL}".contains('%20')){
@@ -46,12 +46,11 @@ pipeline {
                println(jobPath)
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               //println(logContent.toString())
-               //File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
-               //logFile.append(logContent.toString())
+               File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
+               logFile.append(logContent.toString())
              }
                echo "Uploading job logs ${env.PATTERN} to storage bucket path: ${env.BUCKET}/$jobPath"
-               googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "sample.txt"
+               googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
            }
         }
 }
