@@ -44,9 +44,10 @@ pipeline {
                println(buildUrl)
                jobPath = buildUrl.split(":8080/")[1]
                println(jobPath)
-               def logContent = new ByteArrayOutputStream()
-               currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
-               println(logContent.toString())
+               //def logContent = new ByteArrayOutputStream()
+               //currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
+               //println(logContent.toString())
+               File logFile = new File("temp.txt")
                //File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
                //logFile.append(logContent.toString())
              }
