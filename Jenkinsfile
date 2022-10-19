@@ -31,7 +31,7 @@ pipeline {
         post {
            always {
              script {
-               //sh 'touch joblognew1.txt'
+                 sh 'touch joblognew1.txt'
                //sh 'echo testing >> joblognew1.txt'
                
                  if ("${BUILD_URL}".contains('%20')){
