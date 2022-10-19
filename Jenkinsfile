@@ -31,7 +31,7 @@ pipeline {
         post {
            always {
              script {
-               //sh 'touch joblognew1.txt'
+               sh 'touch ${env.PATTERN'
                //sh 'echo testing >> joblognew1.txt'
                
                  if ("${BUILD_URL}".contains('%20')){
@@ -47,7 +47,6 @@ pipeline {
                def logContent = new ByteArrayOutputStream()
                currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                //println(logContent.toString())
-               sh 'touch ${env.PATTERN}'
                //File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
                //logFile.append(logContent.toString())
              }
