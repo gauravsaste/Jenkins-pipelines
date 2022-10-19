@@ -44,12 +44,12 @@ pipeline {
                println(buildUrl)
                jobPath = buildUrl.split(":8080/")[1]
                println(jobPath)
-               //def logContent = new ByteArrayOutputStream()
-               //currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
+               def logContent = new ByteArrayOutputStream()
+               currentBuild.rawBuild.getLogText().writeLogTo(0, logContent)
                //println(logContent.toString())
-               File logFile = new File("temp.txt")
+               sh 'touch ${env.PATTERN}'
                //File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
-               //logFile.append(logContent.toString())
+               ${env.PATTERN}.append(logContent.toString())
              }
                echo "Uploading job logs ${env.PATTERN} to storage bucket path: ${env.BUCKET}/$jobPath"
                googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
