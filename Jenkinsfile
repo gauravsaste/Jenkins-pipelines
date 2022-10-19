@@ -49,7 +49,7 @@ pipeline {
                //println(logContent.toString())
                sh 'touch ${env.PATTERN}'
                //File logFile = new File("${env.WORKSPACE}/${env.PATTERN}")
-               ${env.PATTERN}.append(logContent.toString())
+               //logFile.append(logContent.toString())
              }
                echo "Uploading job logs ${env.PATTERN} to storage bucket path: ${env.BUCKET}/$jobPath"
                googleStorageUpload bucket: "gs://${env.BUCKET}/$jobPath", credentialsId: env.CREDS_ID, pattern: "${env.PATTERN}"
